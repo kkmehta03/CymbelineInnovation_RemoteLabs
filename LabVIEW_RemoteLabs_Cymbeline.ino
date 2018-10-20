@@ -22,8 +22,8 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
-static const char ssid[] = "CYMB@BMSCE";
-static const char password[] = "PHASESHIFT";
+static const char ssid[] = ".......";
+static const char password[] = ".......";
 MDNSResponder mdns;
 int i;
 static void writeLED1(bool);
