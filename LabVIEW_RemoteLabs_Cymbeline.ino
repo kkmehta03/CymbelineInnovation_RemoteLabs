@@ -322,11 +322,11 @@ void loop()
   nandG= !andG;
   faS = xorG xor c;
   faC = andG or (c and xorG);
-  digitalWrite(D4, nandG);
-  digitalWrite(D8, orG);
-  digitalWrite(D7, xorG);
-  digitalWrite(D6, andG);
-  digitalWrite(D5, faS);
-  digitalWrite(D0, faC);
+  digitalWrite(D0, nandG);
+  digitalWrite(D5, orG);
+  digitalWrite(D6, xorG);
+  digitalWrite(D7, andG);
+  digitalWrite(D8, faS);
+  //digitalWrite(D0, faC);
   delay(10);
 }
