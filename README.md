@@ -17,7 +17,6 @@ The kit is designed for 3 inputs and has 5 outputs.
 | XOR   | D7   |
 | AND   | D6   |
 | FaS   | D5   |
-| FaC   | D0   |
 
 ### Procedure:
 * Rig up the circuit as per the schematic below.
