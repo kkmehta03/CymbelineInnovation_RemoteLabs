@@ -12,11 +12,11 @@ The kit is designed for 3 inputs and has 5 outputs.
 ### Outputs
 | Gates | Pins |
 |-------|------|
-| NAND  | D4   |
-| OR    | D8   |
-| XOR   | D7   |
-| AND   | D6   |
-| FaS   | D5   |
+| NAND  | D0   |
+| OR    | D5   |
+| XOR   | D6   |
+| AND   | D7   |
+| FaS   | D8   |
 
 ### Procedure:
 * Rig up the circuit as per the schematic below.
