@@ -22,8 +22,10 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
-static const char ssid[] = ".......";
-static const char password[] = ".......";
+
+static const char ssid[] = ".......";// Your WiFi SSID comes here
+static const char password[] = ".......";//Your WiFi password comes here
+
 MDNSResponder mdns;
 int i;
 static void writeLED1(bool);
@@ -31,16 +33,16 @@ static void writeLED2(bool);
 static void writeLED3(bool);
 // GPIO#0 is for Adafruit ESP8266 HUZZAH board. Your board LED might be on 13.
 
-const int LEDPIN[3] = {D3,D2,D1};
+const int LEDPIN[3] = {D3,D2,D1};//Input LED pins to indicate inputs
 // Current LED status
 bool LEDStatus[3];
 
-
-
-
+//Default server port is 80
 ESP8266WebServer server(80);
+//Web socket port at 81
 WebSocketsServer webSocket = WebSocketsServer(81);
 
+//Index web page for connected client
 static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <!DOCTYPE html>
 <html>
@@ -101,14 +103,17 @@ const char LEDOFF2[] = "ledoff2";
 const char LEDON3[] = "ledon3";
 const char LEDOFF3[] = "ledoff3";
 
-
+//Socket Event helper code
 void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length)
 {
   Serial.printf("webSocketEvent(%d, %d, ...)\r\n", num, type);
   switch(type) {
+    // Client closes web session
     case WStype_DISCONNECTED:
       Serial.printf("[%u] Disconnected!\r\n", num);
       break;
+      
+    //Client connected and web page is open & ready. Send current LED Status
     case WStype_CONNECTED:
       {
         IPAddress ip = webSocket.remoteIP(num);
@@ -126,7 +131,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
         else {
           webSocket.sendTXT(num, LEDOFF2, strlen(LEDOFF2));
         }
-         if (LEDStatus[0]) {
+         if (LEDStatus[2]) {
           webSocket.sendTXT(num, LEDON3, strlen(LEDON3));
         }
         else {
@@ -134,6 +139,8 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
         }
       }
       break;
+      
+    //Requests made by the web page
     case WStype_TEXT:
       Serial.printf("[%u] get Text: %s\r\n", num, payload);
 
@@ -174,11 +181,13 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
   }
 }
 
+//Send on server, the defined webpage
 void handleRoot()
 {
   server.send_P(200, "text/html", INDEX_HTML);
 }
 
+//In case client requests another web page.
 void handleNotFound()
 {
   String message = "File Not Found\n\n";
@@ -195,6 +204,7 @@ void handleNotFound()
   server.send(404, "text/plain", message);
 }
 
+//Write LEDs depending on socket input
 static void writeLED1(bool LEDon1)
 {
   LEDStatus[0] = LEDon1;
