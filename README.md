@@ -33,7 +33,7 @@ as per your Wifi SSID and its password, for the D1 Mini to successfully connect 
 * Use the remote lab through the web page.
 
 ### Schematic
-![alt text](https://github.com/KhyatiMehta3/CymbelineInnovation_RemoteLabs/blob/master/RemoteLab_Fritzing.png "Schematic")
+![alt text](https://github.com/KhyatiMehta3/CymbelineInnovation_RemoteLabs/blob/master/RemoteLab_Fritzing1.png "Schematic")
 
 ### The Remote Lab Kit
 ![alt text](https://github.com/KhyatiMehta3/CymbelineInnovation_RemoteLabs/blob/master/RemoteLab_Kit.jpeg "RemoteLab Kit")
