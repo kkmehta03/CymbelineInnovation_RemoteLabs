@@ -42,6 +42,10 @@ ESP8266WebServer server(80);
 //Web socket port at 81
 WebSocketsServer webSocket = WebSocketsServer(81);
 
+//User Auth
+const char* www_username = "USER";
+const char* www_password = "USERPASS";
+
 //Index web page for connected client
 static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <!DOCTYPE html>
@@ -184,6 +188,10 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 //Send on server, the defined webpage
 void handleRoot()
 {
+  //If the server isn't authenticated, request authentication and then send the file.
+  if (!server.authenticate(www_username, www_password)) {
+    return server.requestAuthentication();
+  }
   server.send_P(200, "text/html", INDEX_HTML);
 }
 
