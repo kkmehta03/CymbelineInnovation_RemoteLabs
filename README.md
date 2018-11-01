@@ -38,3 +38,4 @@ as per your Wifi SSID and its password, for the D1 Mini to successfully connect 
 ### The Remote Lab Kit
 ![alt text](https://github.com/KhyatiMehta3/CymbelineInnovation_RemoteLabs/blob/master/RemoteLab_Kit.jpeg "RemoteLab Kit")
 ---
+### In case you find issues or need help, please go to the Issues tab, and click "New Issue" button and write in your query & issue. Please write your query in detail along with screenshots to make it easy for us to understand the problem. We will get back to you with the solution.
