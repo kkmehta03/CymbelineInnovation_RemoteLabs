@@ -251,8 +251,8 @@ static void writeLED3(bool LEDon3)
 
 void setup()
 {
-IPAddress ip(192,168,43,207);
-IPAddress gateway(192,168,43,1);
+IPAddress ip(192,168,1,207);
+IPAddress gateway(192,168,1,1);
 IPAddress subnet(255,255,255,0);
 WiFi.config(ip, gateway, subnet);
 WiFi.mode(WIFI_STA);
