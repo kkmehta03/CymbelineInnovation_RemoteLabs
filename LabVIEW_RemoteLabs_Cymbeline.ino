@@ -23,8 +23,8 @@
 #include <ESP8266mDNS.h>
 
 
-static const char ssid[] = ".......";// Your WiFi SSID comes here
-static const char password[] = ".......";//Your WiFi password comes here
+static const char ssid[] = ".........";// Your WiFi SSID comes here
+static const char password[] = "........";//Your WiFi password comes here
 
 MDNSResponder mdns;
 int i;
@@ -66,14 +66,14 @@ function start() {
   websock.onmessage = function(evt) {
     console.log(evt);
     var e = document.getElementById('ledstatus');
-    if (evt.data === 'ledon') {
+    if ((evt.data === 'ledon1') || (evt.data === 'ledon2') || (evt.data === 'ledon3')) {
+      e.style.color = 'green';
+    }
+    else if ((evt.data === 'ledoff1')||(evt.data === 'ledoff2')||(evt.data === 'ledoff3')) {
       e.style.color = 'red';
     }
-    else if (evt.data === 'ledoff') {
-      e.style.color = 'black';
-    }
     else {
-      console.log('unknown event');
+      console.log(evt.data + 'unknown event');
     }
   };
 }
@@ -154,13 +154,13 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
       else if (strcmp(LEDOFF1, (const char *)payload) == 0) {
         writeLED1(false);
       }
-       if (strcmp(LEDON2, (const char *)payload) == 0) {
+      else if (strcmp(LEDON2, (const char *)payload) == 0) {
         writeLED2(true);
       }
       else if (strcmp(LEDOFF2, (const char *)payload) == 0) {
         writeLED2(false);
       }
-       if (strcmp(LEDON3, (const char *)payload) == 0) {
+      else if (strcmp(LEDON3, (const char *)payload) == 0) {
         writeLED3(true);
       }
       else if (strcmp(LEDOFF3, (const char *)payload) == 0) {
