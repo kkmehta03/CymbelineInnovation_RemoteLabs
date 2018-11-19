@@ -37,10 +37,10 @@ const int LEDPIN[3] = {D3,D2,D1};//Input LED pins to indicate inputs
 // Current LED status
 bool LEDStatus[3];
 
-//Default server port is 80
-ESP8266WebServer server(80);
-//Web socket port at 81
-WebSocketsServer webSocket = WebSocketsServer(81);
+//Default server port is 80, but any port can be used.
+ESP8266WebServer server(5004);
+//Web socket port at 81, again any port can be used.
+WebSocketsServer webSocket = WebSocketsServer(5005);
 
 //User Auth
 const char* www_username = "USER";
@@ -308,8 +308,8 @@ for(i=0;i<3;i++)
 
   if (mdns.begin("asee1", WiFi.localIP())) {
     Serial.println("MDNS responder started");
-    mdns.addService("http", "tcp", 80);
-    mdns.addService("ws", "tcp", 81);
+    mdns.addService("http", "tcp", 5004);
+    mdns.addService("ws", "tcp", 5005);
   }
   else {
     Serial.println("MDNS.begin failed");
