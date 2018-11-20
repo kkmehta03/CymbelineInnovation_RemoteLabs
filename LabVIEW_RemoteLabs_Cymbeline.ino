@@ -52,14 +52,14 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <html>
 <head>
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=0">
-<title>BMSCE PHASE SHIFT REMOTE LAB WORKSHOP</title>
+<title>REMOTE LABS</title>
 <style>
 "body { background-color: #808080; font-family: Arial, Helvetica, Sans-Serif; Color: #000000; }"
 </style>
 <script>
 var websock;
 function start() {
-  websock = new WebSocket('ws://' + window.location.hostname + ':81/');
+  websock = new WebSocket('ws://' + window.location.hostname + ':5005/');
   websock.onopen = function(evt) { console.log('websock open'); };
   websock.onclose = function(evt) { console.log('websock close'); };
   websock.onerror = function(evt) { console.log(evt); };
@@ -83,7 +83,7 @@ function buttonclick(e) {
 </script>
 </head>
 <body onload="javascript:start();">
-<h1>BMSCE PHASE SHIFT REMOTE LAB WORKSHOP</h1>
+<h1> <center>REMOTE LAB </center> </h1>
 <div id="ledstatus"><b>IN-A</b></div>
 <button id="ledon1"  type="button" onclick="buttonclick(this);">On</button> 
 <button id="ledoff1" type="button" onclick="buttonclick(this);">Off</button>
@@ -96,8 +96,6 @@ function buttonclick(e) {
 </body>
 </html>
 )rawliteral";
-
-
 
 // Commands sent through Web Socket
 const char LEDON1[] = "ledon1";
