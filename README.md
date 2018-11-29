@@ -2,7 +2,7 @@
 Remote Labs Kit developed by Cymbeline Innovation, using Wemos D1 Mini ESP8266 Web Server &amp; arduino Web Sockets.
 The kit is designed for 3 inputs and has 5 outputs.
 
-#### Before trying any uploads or any changes to the code, please go through the step-by-step PPT and ensure all libraries and device drivers are perfectly installed. Most possible errors occur because your libraries aren't included. 
+#### Before trying any uploads or any changes to the code, please download and go through the [step-by-step PPT](https://github.com/KhyatiMehta3/CymbelineInnovation_RemoteLabs/blob/master/Step%20by%20Step%20Instructions.pptx) and ensure all libraries and device drivers are perfectly installed. Most possible errors occur because your libraries aren't included. 
 
 ### Inputs
 |Inputs|Pins|
@@ -49,5 +49,5 @@ as per your Wifi SSID and its password, for the D1 Mini to successfully connect 
 * Paste the global IP in field that might have "Remote IP" and your local IP at the field called "Local IP".
 * Enter your port number that you have configured in the code. It can be anything apart from default port numbers. For example, 5004.
 * Apply changes.
-* Type in your global ip followed by port number (Ex- 117.295.112.102:5004) on any browser connected to any network and control your remote lab completely remotely.
+* Type in your global ip followed by port number (Ex- 117.215.112.102:5004) on any browser connected to any network and control your remote lab completely remotely.
 ### In case you find issues or need help, please go to the Issues tab, and click "New Issue" button and write in your query & issue. Please write your query in detail along with screenshots to make it easy for us to understand the problem. We will get back to you with the solution.
