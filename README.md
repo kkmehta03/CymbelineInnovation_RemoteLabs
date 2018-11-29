@@ -2,6 +2,8 @@
 Remote Labs Kit developed by Cymbeline Innovation, using Wemos D1 Mini ESP8266 Web Server &amp; arduino Web Sockets.
 The kit is designed for 3 inputs and has 5 outputs.
 
+#### Before trying any uploads or any changes to the code, please go through the step-by-step PPT and ensure all libraries and device drivers are perfectly installed. Most possible errors occur because your libraries aren't included. 
+
 ### Inputs
 |Inputs|Pins|
 |------|----|
