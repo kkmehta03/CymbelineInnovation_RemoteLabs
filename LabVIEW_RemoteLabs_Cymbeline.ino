@@ -23,8 +23,8 @@
 #include <ESP8266mDNS.h>
 
 
-static const char ssid[] = ".......";// Your WiFi SSID comes here
-static const char password[] = ".......";//Your WiFi password comes here
+static const char ssid[] = ".........";// Your WiFi SSID comes here
+static const char password[] = "........";//Your WiFi password comes here
 
 MDNSResponder mdns;
 int i;
@@ -37,10 +37,10 @@ const int LEDPIN[3] = {D3,D2,D1};//Input LED pins to indicate inputs
 // Current LED status
 bool LEDStatus[3];
 
-//Default server port is 80
-ESP8266WebServer server(80);
-//Web socket port at 81
-WebSocketsServer webSocket = WebSocketsServer(81);
+//Default server port is 80, but any port can be used.
+ESP8266WebServer server(5004);
+//Web socket port at 81, again any port can be used.
+WebSocketsServer webSocket = WebSocketsServer(5005);
 
 //User Auth
 const char* www_username = "USER";
@@ -55,9 +55,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <head>
 
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=0">
-
 <title>ICTIEE 2019</title>
-
 <style>
 
 body 
@@ -132,7 +130,7 @@ websock.onmessage = function(evt) {
  if (evt.data === 'ledon') {
      
  e.style.color = 'red';
-   
+
 }
     
 else if (evt.data === 'ledoff') {
@@ -162,6 +160,7 @@ websock.send(e.id);
 
 <body onload="javascript:start();">
 
+
 <!-- <div id="images"> -->
 <!-- <img src ="remote2.jpg" class="bkgimg"> -->
 <!-- <img src ="cymbeline_ab.png" class="cymblogo"> -->
@@ -172,6 +171,7 @@ websock.send(e.id);
 <div id="ledstatus">
 <b>IN-A</b>
 </div>
+
 
 <button id="ledon1"  type="button" onclick="buttonclick(this);">On</button> 
 
@@ -200,8 +200,6 @@ websock.send(e.id);
 </body>
 </html>
 )rawliteral";
-
-
 
 // Commands sent through Web Socket
 const char LEDON1[] = "ledon1";
@@ -258,13 +256,13 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
       else if (strcmp(LEDOFF1, (const char *)payload) == 0) {
         writeLED1(false);
       }
-       if (strcmp(LEDON2, (const char *)payload) == 0) {
+      else if (strcmp(LEDON2, (const char *)payload) == 0) {
         writeLED2(true);
       }
       else if (strcmp(LEDOFF2, (const char *)payload) == 0) {
         writeLED2(false);
       }
-       if (strcmp(LEDON3, (const char *)payload) == 0) {
+      else if (strcmp(LEDON3, (const char *)payload) == 0) {
         writeLED3(true);
       }
       else if (strcmp(LEDOFF3, (const char *)payload) == 0) {
@@ -355,8 +353,8 @@ static void writeLED3(bool LEDon3)
 
 void setup()
 {
-IPAddress ip(192,168,43,207);
-IPAddress gateway(192,168,43,1);
+IPAddress ip(192,168,1,207);
+IPAddress gateway(192,168,1,1);
 IPAddress subnet(255,255,255,0);
 WiFi.config(ip, gateway, subnet);
 WiFi.mode(WIFI_STA);
@@ -412,8 +410,8 @@ for(i=0;i<3;i++)
 
   if (mdns.begin("asee1", WiFi.localIP())) {
     Serial.println("MDNS responder started");
-    mdns.addService("http", "tcp", 80);
-    mdns.addService("ws", "tcp", 81);
+    mdns.addService("http", "tcp", 5004);
+    mdns.addService("ws", "tcp", 5005);
   }
   else {
     Serial.println("MDNS.begin failed");
