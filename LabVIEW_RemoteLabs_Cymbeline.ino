@@ -56,7 +56,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=0">
 
-<title>BMSCE PHASE SHIFT REMOTE LAB WORKSHOP</title>
+<title>ICTIEE 2019</title>
 
 <style>
 
