@@ -49,50 +49,154 @@ const char* www_password = "USERPASS";
 //Index web page for connected client
 static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
 <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=0">
+
 <title>BMSCE PHASE SHIFT REMOTE LAB WORKSHOP</title>
+
 <style>
-"body { background-color: #808080; font-family: Arial, Helvetica, Sans-Serif; Color: #000000; }"
+
+body 
+{ 
+
+background-image: url("remote2.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center; 
+position: middle;
+text-align: center;
+overflow: hidden;
+height: 500px;
+clear:both;
+font-family: Arial, Helvetica, Sans-Serif;
+Color: #000000; 
+}
+url.remote2
+{
+opacity:0.5;
+}
+
+button
+{
+padding: 15px 32px;
+font-weight: bold;
+}
+
+div
+{
+margin-bottom:15px;
+}
+
+h1
+{
+font-family: aqua;
+margin-top: 40px;
+margin-bottom:30px;
+color:red;
+background-color: white;
+}
+
+
+
 </style>
+
 <script>
 var websock;
+
 function start() {
-  websock = new WebSocket('ws://' + window.location.hostname + ':81/');
-  websock.onopen = function(evt) { console.log('websock open'); };
-  websock.onclose = function(evt) { console.log('websock close'); };
-  websock.onerror = function(evt) { console.log(evt); };
-  websock.onmessage = function(evt) {
-    console.log(evt);
-    var e = document.getElementById('ledstatus');
-    if (evt.data === 'ledon') {
-      e.style.color = 'red';
-    }
-    else if (evt.data === 'ledoff') {
-      e.style.color = 'black';
-    }
-    else {
-      console.log('unknown event');
-    }
-  };
+  
+websock = new WebSocket('ws://' + window.location.hostname + ':81/');
+  
+websock.onopen = function(evt) { 
+console.log('websock open'); 
+};
+  
+websock.onclose = function(evt) { 
+console.log('websock close');
+ };
+  
+websock.onerror = function(evt) { 
+console.log(evt);
+ };
+  
+websock.onmessage = function(evt) {
+   
+ console.log(evt);
+   
+ var e = document.getElementById('ledstatus');
+   
+ if (evt.data === 'ledon') {
+     
+ e.style.color = 'red';
+   
 }
+    
+else if (evt.data === 'ledoff') {
+    
+  e.style.color = 'black';
+   
+ }
+   
+ else {
+      
+console.log('unknown event');
+    
+}
+  
+};
+
+
 function buttonclick(e) {
-  websock.send(e.id);
+  
+websock.send(e.id);
+
 }
+
 </script>
+
 </head>
+
 <body onload="javascript:start();">
-<h1>BMSCE PHASE SHIFT REMOTE LAB WORKSHOP</h1>
-<div id="ledstatus"><b>IN-A</b></div>
+
+<!-- <div id="images"> -->
+<!-- <img src ="remote2.jpg" class="bkgimg"> -->
+<!-- <img src ="cymbeline_ab.png" class="cymblogo"> -->
+
+
+<h1> ICTIEE 2019</h1>
+<div>
+<div id="ledstatus">
+<b>IN-A</b>
+</div>
+
 <button id="ledon1"  type="button" onclick="buttonclick(this);">On</button> 
+
 <button id="ledoff1" type="button" onclick="buttonclick(this);">Off</button>
-<div id="ledstatus"><b>IN-B</b></div>
+</div>
+
+<div>
+<div id="ledstatus">
+<b>IN-B</b>
+</div>
+
 <button id="ledon2"  type="button" onclick="buttonclick(this);">On</button> 
+
 <button id="ledoff2" type="button" onclick="buttonclick(this);">Off</button>
-<div id="ledstatus"><b>IN-C</b></div>
+</div>
+<div>
+<div id="ledstatus">
+<b>IN-C</b>
+</div>
+
 <button id="ledon3"  type="button" onclick="buttonclick(this);">On</button> 
+
 <button id="ledoff3" type="button" onclick="buttonclick(this);">Off</button>
+</div>
+</div>
 </body>
 </html>
 )rawliteral";
